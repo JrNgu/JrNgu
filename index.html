@@ -295,7 +295,7 @@
 
             <div class="input-group-2">
                 <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-                <input type="submit" value="Send Message" class="btn">
+                <input type="submit" value="Send Message" class="btn" onclick="sendSMS(event)" />
             </div>
         </form>
     </section>
@@ -333,6 +333,13 @@
             © JrNgu | All Rights Reserved
         </p>
     </footer>
+
+    <script>
+  function sendSMS(event) {
+    event.preventDefault(); // Prevent form submission
+    window.location.href = "sms:+34685680031"; // Replace with your phone number
+  }
+</script>
 
     <script src="script.js"></script>
 </body>
