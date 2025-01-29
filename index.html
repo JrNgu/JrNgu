@@ -295,7 +295,7 @@
 
             <div class="input-group-2">
                 <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-                <input type="submit" value="Send Message" class="btn" onclick="sendSMS(event)" />
+                <input type="submit" value="Send Message" class="btn" onclick="sendEmail(event)" />
             </div>
         </form>
     </section>
@@ -335,9 +335,15 @@
     </footer>
 
     <script>
-  function sendSMS(event) {
+  function sendEmail(event) {
     event.preventDefault(); // Prevent form submission
-    window.location.href = "sms:+34685680031"; // Replace with your phone number
+    const userName = document.querySelector('input[name="name"]').value;
+    const userEmail = document.querySelector('input[name="email"]').value;
+    const subject = "Message from " + userName;
+    const body = "You have received a message from: " + userName + " (" + userEmail + ").";
+    
+    // Open default email client with pre-filled information
+    window.location.href = `mailto:your-email@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 </script>
 
