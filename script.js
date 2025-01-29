@@ -28,3 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
         navbar.classList.toggle('active');
     };
 });
+
+function sendEmail(event) {
+    event.preventDefault(); // Prevent form submission
+    const userName = document.querySelector('input[name="name"]').value;
+    const userEmail = document.querySelector('input[name="email"]').value;
+    const subject = "Message from " + userName;
+    const body = "You have received a message from: " + userName + " (" + userEmail + ").";
+    
+    // Open default email client with pre-filled information
+    window.location.href = `mailto:your-email@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
