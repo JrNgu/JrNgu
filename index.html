@@ -306,29 +306,40 @@
 <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
     // Initialize EmailJS with your user ID
-    emailjs.init('your-user-id'); // Replace with your EmailJS user ID
+emailjs.init('your-user-id');  // Replace with your actual EmailJS user ID
 
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
 
-        // Get form values
-        const userName = document.getElementById("name").value;
-        const userEmail = document.getElementById("email").value;
-        const userPhone = document.getElementById("phone").value;
-        const subject = document.getElementById("subject").value;
-        const message = document.getElementById("message").value;
+    // Get form values
+    const userName = document.getElementById("name").value;
+    const userEmail = document.getElementById("email").value;
+    const userPhone = document.getElementById("phone").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
 
-        // Send email using EmailJS
-        emailjs.sendForm('your-service-id', 'your-template-id', this)  // Replace with your service and template ID
-            .then(function(response) {
-                console.log('Success!', response);
-                // Show Thank You message and clear the form
-                document.getElementById('thankYouMessage').style.display = 'block';
-                document.getElementById('contactForm').reset();  // Clear form fields
-            }, function(error) {
-                console.log('Failed...', error);
-            });
-    });
+    // Create email data object
+    const emailData = {
+        from_name: userName,
+        from_email: userEmail,
+        phone: userPhone,
+        subject: subject,
+        message: message,
+        to_email: 'jrnguyen2015@gmail.com' // Your email address
+    };
+
+    // Send email using EmailJS
+    emailjs.send('your-service-id', 'your-template-id', emailData)  // Replace with your service and template ID
+        .then(function(response) {
+            console.log('Success!', response);
+            // Show Thank You message and clear the form
+            document.getElementById('thankYouMessage').style.display = 'block';
+            document.getElementById('contactForm').reset();  // Clear form fields
+        }, function(error) {
+            console.log('Failed...', error);
+        });
+});
+
 </script>
 
     </section>
